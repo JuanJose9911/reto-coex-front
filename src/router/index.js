@@ -2,6 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+//Empleados
+import empleados from '../views/empleados/empleados.vue'
+import crearEmpleados from '../views/empleados/crearEmpleado.vue'
+import tipoContrato from '../views/contratos/tipoContrato.vue'
+import mostrarEmpleado from '../views/empleados/mostrarEmpleado.vue'
+import editarEmpleado from '../views/empleados/editarEmpleado.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -19,7 +26,32 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
     }
-  }
+  },
+  {
+    path: '/empleados',
+    name: 'empleados',
+    component: empleados
+  },
+  {
+    path: '/crear-empleado',
+    name: 'crear-empleado',
+    component: crearEmpleados
+  },
+  {
+    path: '/tipo-contratos',
+    name: 'tipo-contratos',
+    component: tipoContrato
+  },
+  {
+    path: '/empleado/:id',
+    name: 'detalle-empleado',
+    component: mostrarEmpleado
+  },
+  {
+    path: '/empleado/edit/:id',
+    name: 'editar-empleado',
+    component: editarEmpleado
+  },
 ]
 
 const router = new VueRouter({

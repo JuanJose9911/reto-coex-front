@@ -3,6 +3,9 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+import empleados from './empleados'
+import contratos from './contratos'
+
 export default new Vuex.Store({
   state: {
   },
@@ -13,5 +16,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
+    empleados,
+    contratos
   }
 })
