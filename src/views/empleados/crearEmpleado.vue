@@ -1,28 +1,29 @@
 <template>
   <div class="bg-emerald-200 h-screen">
     <navbar-vue></navbar-vue>
-    <div class="flex justify-end my-5">
-        <h2 class="text-4xl font-bold mr-5 flex items-center">Registrar Empleado</h2>
-        <button class="mr-10 bg-slate-600 h-10 px-3 rounded-md flex items-center text-white" @click="crearEmpleado">Crear empleado</button>
-    </div>
-    <div class="mt-4">
+    <form @submit.prevent="crearEmpleado">
+        <div class="flex justify-end my-5">
+            <h2 class="text-4xl font-bold mr-5 flex items-center">Registrar Empleado</h2>
+            <button class="mr-10 bg-slate-600 h-10 px-3 rounded-md flex items-center text-white" type="submit">Crear empleado</button>
+        </div>
+        <div class="mt-4">
         <div class="grid md:grid-cols-2 grid-cols-1 w-screen">
             <div class="mx-auto text-left">
                 <label for="Documento">Documento</label>
-                <input class="rounded-md h-7 w-[300px] px-3" v-model="documento" type="text" name="Documento" id="Documento" placeholder="Documento">
+                <input required maxlength="12" class="rounded-md h-7 w-[300px] px-3" v-model="documento" type="text" name="Documento" id="Documento" placeholder="Documento">
 
                 <label for="Nombres">Nombres</label>
-                <input class="rounded-md h-7 w-[300px] px-3" v-model="nombre" type="text" name="Nombres" id="Nombres" placeholder="Nombres">
+                <input required maxlength="45" class="rounded-md h-7 w-[300px] px-3" v-model="nombre" type="text" name="Nombres" id="Nombres" placeholder="Nombres">
 
                 <label for="Apellidos">Apellidos</label>
-                <input class="rounded-md h-7 w-[300px] px-3" v-model="apellidos" type="text" name="Apellidos" id="Apellidos" placeholder="Apellidos">
+                <input required maxlength="45" class="rounded-md h-7 w-[300px] px-3" v-model="apellidos" type="text" name="Apellidos" id="Apellidos" placeholder="Apellidos">
             </div>
             <div class="mx-auto text-left">
                 <label for="Telefono">Telefono</label>
-                <input class="rounded-md h-7 w-[300px] px-3" v-model="telefono" type="text" name="Telefono" id="Telefono" placeholder="Telefono">
+                <input required class="rounded-md h-7 w-[300px] px-3" v-model="telefono" type="tel" name="Telefono" id="Telefono" placeholder="Telefono">
 
                 <label for="Direccion">Direccion</label>
-                <input class="rounded-md h-7 w-[300px] px-3" v-model="direccion" type="text" name="Direccion" id="Direccion" placeholder="Direccion">
+                <input required maxlength="60" class="rounded-md h-7 w-[300px] px-3" v-model="direccion" type="text" name="Direccion" id="Direccion" placeholder="Direccion">
             </div>
         </div>
         <div class="">
@@ -30,23 +31,26 @@
             <div class="grid md:grid-cols-2 grid-cols-1 w-screen">
                 <div class="mx-auto text-left">
                     <label for="tipo_contrato">Tipo de contrato</label>
-                    <select class="rounded-md h-7 w-[300px] px-3" name="tipo_contrato" v-model="tipo_contrato_id" id="tipo_contrato">
+                    <select required class="rounded-md h-7 w-[300px] px-3" name="tipo_contrato" v-model="tipo_contrato_id" id="tipo_contrato">
                         <option v-for="(contrato, key) in contratos"
                             :key="key"
                             :value="contrato.id">{{contrato.nombre}}</option>
                     </select>
 
                     <!-- Poner un v-if -->
-                    <label for="Duracion">Duracion</label>
-                    <input class="rounded-md h-7 w-[300px] px-3" v-model="duracion" type="text" name="Duracion" id="Duracion" placeholder="Duracion">
+                    <div v-if="tipo_contrato_id == '4'">
+                        <label for="Duracion">Duracion</label>
+                        <input required maxlength="45" class="rounded-md h-7 w-[300px] px-3" v-model="duracion" type="text" name="Duracion" id="Duracion" placeholder="Duracion">
+                    </div>
                 </div>
                 <div class="mx-auto text-left">
                     <label for="Sueldo">Sueldo</label>
-                    <input class="rounded-md h-7 w-[300px] px-3" v-model="sueldo" type="text" name="Sueldo" id="Sueldo" placeholder="Sueldo">
+                    <input required class="rounded-md h-7 w-[300px] px-3" v-model="sueldo" type="number" name="Sueldo" id="Sueldo" placeholder="Sueldo">
                 </div>
             </div>
         </div>
-    </div>
+     </div>
+    </form>
   </div>
 </template>
 
